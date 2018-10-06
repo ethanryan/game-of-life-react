@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 let grid = [] //game grid is an array of cells
 //NOTE: is grid an array of arrays, or an array of objects??
 
-let gridLength = 10
+let gridLength = 25
 
 for (var i=0; i < gridLength; i++) {
   let cell = {id: '', alive: ''} //this needs to be declared in the for loop...
@@ -39,7 +39,7 @@ class GameGrid extends Component {
             )
           })}
         </div>
-        
+
       </div>
     );
   }

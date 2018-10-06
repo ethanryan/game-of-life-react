@@ -57,7 +57,8 @@ const HEIGHT = 600; */
 .GameGrid {
   background-color: darkgray;
   /* position: absolute; */
-  height: 800px;
+  /* height: 800px; */
+  height: 200px;
   /* width: 800px; */
   width: 80%;
   border: 3px solid blue;
@@ -65,4 +66,10 @@ const HEIGHT = 600; */
   /* NOTE: background-image creates grid... */
   background-size: 20px 20px;
   /* NOTE: background-size is size of height and width of each cell... */
+}
+
+.ControlPanel {
+  background-color: lightgreen;
+  border: 3px solid green;
+  width: 60%;
 }

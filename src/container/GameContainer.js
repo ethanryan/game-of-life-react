@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import GameGrid from '../components/GameGrid';
+import ControlPanel from '../components/ControlPanel';
 
 class GameContainer extends Component {
   render() {
@@ -14,6 +15,9 @@ class GameContainer extends Component {
         </div>
 
         <GameGrid
+        />
+
+        <ControlPanel
         />
 
       </div>

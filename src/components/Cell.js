@@ -4,7 +4,7 @@ class Cell extends Component {
   render() {
     return (
       <div className={(this.props.cellAlive === true) ? "green" : ""}>
-        {this.props.cellId} -- {this.props.cellAlive === true ? "ALIVE!!" : "dead..."}
+        {this.props.cellId}: {this.props.cellAlive === true ? "ALIVE!" : "dead..."}
       </div>
     );
   }

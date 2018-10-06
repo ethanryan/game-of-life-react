@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Cell from './Cell';
+
 let grid = [] //game grid is an array of cells
 //NOTE: is grid an array of arrays, or an array of objects??
 
@@ -34,7 +36,10 @@ class GameGrid extends Component {
             console.log('eachCell is: ', eachCell)
             return (
               <div key={eachCell.id} className="grid-item">
-                {eachCell.id} -- {eachCell.alive === true ? "ALIVE!!" : "dead..."}
+                <Cell
+                  cellId={eachCell.id}
+                  cellAlive={eachCell.alive}
+                />
               </div>
             )
           })}

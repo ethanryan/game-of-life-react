@@ -53,6 +53,7 @@ class GameContainer extends Component {
         />
 
         <ControlPanel
+          generation={this.state.generation}
         />
 
       </div>

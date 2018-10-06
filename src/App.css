@@ -30,3 +30,7 @@
 .GameContainer {
   border: 3px solid red;
 }
+
+.GameGrid {
+  border: 3px solid blue;
+}

@@ -1,4 +1,11 @@
 .App {
+  /* text-align: center; */
+  background-color: gray;
+}
+
+/*
+
+.App {
   text-align: center;
 }
 
@@ -25,12 +32,37 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+} */
 
 .GameContainer {
+  background-color: pink;
+  /* background-color: #000; */
   border: 3px solid red;
+  width: 80%;
+  /* position: relative; */
+}
+
+/* const CELL_SIZE = 20;
+const WIDTH = 800;
+const HEIGHT = 600; */
+
+.center-text {
+  text-align: center;
+}
+
+.center-block {
+  margin: 0 auto;
 }
 
 .GameGrid {
+  background-color: darkgray;
+  /* position: absolute; */
+  height: 800px;
+  /* width: 800px; */
+  width: 80%;
   border: 3px solid blue;
+  background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px);
+  /* NOTE: background-image creates grid... */
+  background-size: 20px 20px;
+  /* NOTE: background-size is size of height and width of each cell... */
 }

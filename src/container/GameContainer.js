@@ -13,10 +13,10 @@ let gridLength = 25
 for (var i=0; i < gridLength; i++) {
   let cell = {id: '', alive: ''} //this needs to be declared in the for loop...
   let randomValue = (Math.random() > .5) ? true : false //this needs to be declared in the for loop...
-  console.log('i is: ', i)
+  // console.log('i is: ', i)
   cell.id = i
   cell.alive = randomValue
-  console.log('cell now is: ', cell)
+  // console.log('cell now is: ', cell)
   grid.push(cell)
 }
 
@@ -32,6 +32,13 @@ class GameContainer extends Component {
       generation: 0,
       // grid: grid,
     }
+    this.addGeneration = this.addGeneration.bind(this)
+  }
+
+  addGeneration() {
+    let currentGeneration = this.state.generation
+    let nextGeneration = currentGeneration + 1
+    this.setState({generation: nextGeneration})
   }
 
   render() {
@@ -51,6 +58,10 @@ class GameContainer extends Component {
         <GameGrid
           grid={grid}
         />
+
+        <button className="center-text" onClick={this.addGeneration}>
+          Next Generation
+        </button>
 
         <ControlPanel
           generation={this.state.generation}

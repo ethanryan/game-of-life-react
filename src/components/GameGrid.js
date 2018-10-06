@@ -16,7 +16,7 @@ class GameGrid extends Component {
 
         <div className="grid-container">
           {this.props.grid.map(eachCell => {
-            console.log('eachCell is: ', eachCell)
+            // console.log('eachCell is: ', eachCell)
             return (
               <div key={eachCell.id} className="grid-item">
                 <Cell

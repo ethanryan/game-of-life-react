@@ -116,7 +116,6 @@ class GameContainer extends Component {
     }
 
     console.log('getInitialGrid - grid is: ', grid)
-    this.setState({grid: grid})
     return grid
   }
 
@@ -127,7 +126,8 @@ class GameContainer extends Component {
   }
 
   componentDidMount() {
-    this.getInitialGrid()
+    let grid = this.getInitialGrid()
+    this.setState({grid: grid})
   }
 
   render() {

@@ -26,29 +26,54 @@ import ControlPanel from '../components/ControlPanel';
 //     return liveCount;
 // };
 
-function countLiveNeighbors(grid) {
-  console.log('countLiveNeighbors called with grid: ', grid)
-    var liveCount = 0;
+// This does a two-dimensional loop over the square around the given
+ // x,y position, counting all fields that have a cell but are not the
+ // center field.
+ // function countLiveNeighbors(grid, x, y) {
+ //   var count = 0;
+ //   for (var y1 = Math.max(0, y - 1); y1 <= Math.min(height, y + 1); y1++) {
+ //     for (var x1 = Math.max(0, x - 1); x1 <= Math.min(width, x + 1); x1++) {
+ //       if ((x1 != x || y1 != y) && grid[x1 + y1 * width])
+ //         count +=1 ;
+ //     }
+ //   }
+ //   return count;
+ // }
 
-    // Count neighbors
-    for (var i = -1; i < 2; ++i) {
-        for (var j = -1; j < 2; ++j) {
-            var dx = (this.x + i) % grid.width;
-            var dy = (this.y + j) % grid.height;
-
-            var cell = grid.getCell(dx, dy);
-            if (cell && cell !== this && cell.isAlive()) {
-                ++liveCount;
-            }
-        }
-    }
-
-    return liveCount;
-};
+// function countLiveNeighbors(grid) {
+//   console.log('countLiveNeighbors called with grid: ', grid)
+//     var liveCount = 0;
+//
+//     // Count neighbors
+//     for (var i = -1; i < 2; ++i) {
+//         for (var j = -1; j < 2; ++j) {
+//             var dx = (this.x + i) % grid.width;
+//             var dy = (this.y + j) % grid.height;
+//
+//             var cell = grid.getCell(dx, dy);
+//             if (cell && cell !== this && cell.isAlive()) {
+//                 ++liveCount;
+//             }
+//         }
+//     }
+//
+//     return liveCount;
+// };
 
 // countLiveNeighbors(grid)
 
 
+
+// function countLiveNeighbors(cell) {
+//   let topLeft = ''
+//   let topCenter = ''
+//   let topRight = ''
+//   let centerLeft = ''
+//   let centerRight = ''
+//   let bottomLeft = ''
+//   let bottomCenter = ''
+//   let bottomRight = ''
+// }
 
 class GameContainer extends Component {
 
@@ -70,6 +95,41 @@ class GameContainer extends Component {
     this.addGeneration = this.addGeneration.bind(this)
     this.getInitialGrid = this.getInitialGrid.bind(this)
     this.flattenArray = this.flattenArray.bind(this)
+    this.countLiveNeighbors = this.countLiveNeighbors.bind(this)
+    this.makeArrayOfBooleanValues = this.makeArrayOfBooleanValues.bind(this)
+  }
+
+  // This does a two-dimensional loop over the square around the given
+  // x,y position, counting all fields that have a cell but are not the
+  // center field.
+  //NOTE: via: https://codereview.stackexchange.com/questions/87330/emulating-conways-game-of-life-using-javascript?newreg=3c196755a2ad4a94ac580804f08d2483
+  // function countNeighbors(grid, x, y) {
+  //   var count = 0;
+  //   for (var y1 = Math.max(0, y - 1); y1 <= Math.min(height, y + 1); y1++) {
+  //     for (var x1 = Math.max(0, x - 1); x1 <= Math.min(width, x + 1); x1++) {
+  //       if ((x1 != x || y1 != y) && grid[x1 + y1 * width])
+  //         count +=1 ;
+  //     }
+  //   }
+  //   return count;
+  // }
+  countLiveNeighbors(grid, x, y) {
+    console.log('countLiveNeighbors, grid is: ', grid) //make this grid an array of true / false values...
+    console.log('countLiveNeighbors, x is: ', x)
+    console.log('countLiveNeighbors, y is: ', y)
+    var count = 0;
+    // const numberOfRows = 5
+    // const numberOfColumns = 5
+    let width = 5
+    let height = 5
+    for (var y1 = Math.max(0, y - 1); y1 <= Math.min(height, y + 1); y1++) {
+      for (var x1 = Math.max(0, x - 1); x1 <= Math.min(width, x + 1); x1++) {
+        if ((x1 != x || y1 != y) && grid[x1 + y1 * width])
+          count +=1 ;
+      }
+    }
+    console.log('countLiveNeighbors, final count is: ', count)
+    return count;
   }
 
   makeMatrix = (x, y) => (
@@ -84,6 +144,11 @@ class GameContainer extends Component {
   flattenArray(array) {
     let flatArray = array.reduce((acc, val) => acc.concat(val), []);// [1, 2, 3, 4] //to flat single level array
     return flatArray
+  }
+
+  makeArrayOfBooleanValues(grid) {
+    let arrayOfBooleanValues = grid.map(cell => cell.alive);
+    return arrayOfBooleanValues
   }
 
   getInitialGrid() { //move this function to a helper function...
@@ -131,9 +196,24 @@ class GameContainer extends Component {
     let currentGeneration = this.state.generation
     let nextGeneration = currentGeneration + 1
     this.setState({generation: nextGeneration})
-    // let grid = this.state.grid
+    let grid = this.state.grid
+    let arrayOfBooleanValues = this.makeArrayOfBooleanValues(grid)
     // let livingCellsCount = countLiveNeighbors(grid)
-    // console.log('in addGeneration, livingCellsCount is: ', livingCellsCount)
+    //NOTE: testing countLiveNeighbors function with first cell...
+    // let firstCell = grid[0]
+    // let livingCellsCount = this.countLiveNeighbors(arrayOfBooleanValues, firstCell.x, firstCell.y)
+    //steps:
+    //1) map over grid, call livingCellsCount on each cell, and return newArray of cell objects, replacing liveNeighors value (with a number) and generation values for each object...
+    let newArray = grid.map(eachCell => {
+      let livingCellsCount = this.countLiveNeighbors(arrayOfBooleanValues, eachCell.x, eachCell.y)
+      console.log('in addGeneration, livingCellsCount is: ', livingCellsCount)
+      eachCell.liveNeighors = livingCellsCount
+      eachCell.generation = nextGeneration
+      return eachCell
+    })
+    console.log('newArray is: ', newArray)
+    //2) apply rules of game to each cell object's liveNeighors number in newArray, updating each cell's alive value with new boolean value...
+    //3) with newArray, update state of grid...
   }
 
   componentDidMount() {

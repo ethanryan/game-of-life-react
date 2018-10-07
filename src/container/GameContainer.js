@@ -122,7 +122,7 @@ class GameContainer extends Component {
         x: '', //aka row
         y: '', //aka column
         liveNeighors: '', //make this a function...
-        generation: ''
+        generation: 0
       }
       let randomValue = (Math.random() > .5) ? true : false //this needs to be declared in the for loop...
       // console.log('i is: ', i)

@@ -22,6 +22,10 @@ class GameGrid extends Component {
                 <Cell
                   cellId={eachCell.id}
                   cellAlive={eachCell.alive}
+                  cellX={eachCell.x}
+                  cellY={eachCell.y}
+                  cellGeneration={eachCell.generation}
+                  liveNeighors={eachCell.liveNeighors}
                 />
               </div>
             )

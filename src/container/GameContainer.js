@@ -57,7 +57,7 @@ class GameContainer extends Component {
     this.state = {
       message: "hello world",
       generation: 0,
-      grid: [], //initial state of grid is an empty array...
+      grid: [], //initial state of grid is an empty array... //NOTE: need to update nested generation in each cell within grid???
       cell: {
         id: '',
         alive: '',
@@ -69,6 +69,7 @@ class GameContainer extends Component {
     }
     this.addGeneration = this.addGeneration.bind(this)
     this.getInitialGrid = this.getInitialGrid.bind(this)
+    this.flattenArray = this.flattenArray.bind(this)
   }
 
   makeMatrix = (x, y) => (
@@ -80,7 +81,12 @@ class GameContainer extends Component {
   );
   // console.log(makeMatrix(2, 2));
 
-  getInitialGrid() {
+  flattenArray(array) {
+    let flatArray = array.reduce((acc, val) => acc.concat(val), []);// [1, 2, 3, 4] //to flat single level array
+    return flatArray
+  }
+
+  getInitialGrid() { //move this function to a helper function...
     let grid = [] //game grid is an array of cell objects
 
     let numberOfRows = 5
@@ -89,7 +95,9 @@ class GameContainer extends Component {
     let matrix = this.makeMatrix(numberOfRows, numberOfColumns)
 
     console.log('matrix is: ', matrix)
-    let matrixFlat = matrix.flat()
+    // let matrixFlat = matrix.flat() //NOTE: flat throws error in test, because it is not yet used in all browsers, so using function below instead...
+    let matrixFlat = this.flattenArray(matrix)
+
     console.log('matrixFlat is: ', matrixFlat)
 
     // let gridLength = numberOfRows * numberOfColumns

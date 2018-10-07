@@ -5,22 +5,6 @@ import Rules from '../components/Rules'; //NOTE: delete this component later...
 import ControlPanel from '../components/ControlPanel';
 
 
-// let grid = [] //game grid is an array of cells
-// //NOTE: is grid an array of arrays, or an array of objects??
-//
-// let gridLength = 25
-//
-// for (var i=0; i < gridLength; i++) {
-//   let cell = {id: '', alive: ''} //this needs to be declared in the for loop...
-//   let randomValue = (Math.random() > .5) ? true : false //this needs to be declared in the for loop...
-//   // console.log('i is: ', i)
-//   cell.id = i
-//   cell.alive = randomValue
-//   // console.log('cell now is: ', cell)
-//   grid.push(cell)
-// }
-//
-
 
 ////NOTE: trying this, got online:
 // GridCell.prototype.countLiveNeighbors = function(grid) {
@@ -97,25 +81,23 @@ class GameContainer extends Component {
   // console.log(makeMatrix(2, 2));
 
   getInitialGrid() {
-    let grid = [] //game grid is an array of cells
-    //NOTE: is grid an array of arrays, or an array of objects??
+    let grid = [] //game grid is an array of cell objects
 
     let numberOfRows = 5
     let numberOfColumns = 5
 
-    //const matrix = new Array(numberOfRows).fill(0).map(() => new Array(numberOfColumns).fill(1, 0, 5));
     let matrix = this.makeMatrix(numberOfRows, numberOfColumns)
 
     console.log('matrix is: ', matrix)
     let matrixFlat = matrix.flat()
     console.log('matrixFlat is: ', matrixFlat)
 
-    let gridLength = numberOfRows * numberOfColumns
+    // let gridLength = numberOfRows * numberOfColumns
+    let gridLength = matrixFlat.length
     console.log('gridLength is: ', gridLength)
 
     for (var i=0; i < gridLength; i++) {
-      console.log('matrixFlat[i] is: ', matrixFlat[i])
-      // let cell = {id: '', alive: ''} //this needs to be declared in the for loop...
+      // console.log('matrixFlat[i] is: ', matrixFlat[i])
       let cell = {
         id: '',
         alive: '',
@@ -123,9 +105,8 @@ class GameContainer extends Component {
         y: '', //aka column
         liveNeighors: '', //make this a function...
         generation: 0
-      }
+      } //this needs to be declared in the for loop...
       let randomValue = (Math.random() > .5) ? true : false //this needs to be declared in the for loop...
-      // console.log('i is: ', i)
       cell.id = i
       cell.alive = randomValue
       cell.x = matrixFlat[i].x
@@ -138,7 +119,6 @@ class GameContainer extends Component {
     this.setState({grid: grid})
     return grid
   }
-  // getInitialGrid()
 
   addGeneration() {
     let currentGeneration = this.state.generation

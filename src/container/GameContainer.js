@@ -89,8 +89,8 @@ class GameContainer extends Component {
   getInitialGrid() { //move this function to a helper function...
     let grid = [] //game grid is an array of cell objects
 
-    let numberOfRows = 5
-    let numberOfColumns = 5
+    const numberOfRows = 5
+    const numberOfColumns = 5
 
     let matrix = this.makeMatrix(numberOfRows, numberOfColumns)
 
@@ -131,6 +131,9 @@ class GameContainer extends Component {
     let currentGeneration = this.state.generation
     let nextGeneration = currentGeneration + 1
     this.setState({generation: nextGeneration})
+    // let grid = this.state.grid
+    // let livingCellsCount = countLiveNeighbors(grid)
+    // console.log('in addGeneration, livingCellsCount is: ', livingCellsCount)
   }
 
   componentDidMount() {

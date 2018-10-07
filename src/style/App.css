@@ -60,8 +60,9 @@ const HEIGHT = 600; */
   display: grid;
   /* grid-template-columns: auto auto auto; */
   /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  /* grid-template-columns: repeat(auto-fit); */
+  /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
+  grid-template-columns: repeat(5, minmax(20%, 1fr));
+  /* NOTE: this is a 5 by 5 responsive grid... */
   background-color: #2196F3;
   padding: 20px;
 }

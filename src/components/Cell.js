@@ -5,8 +5,9 @@ class Cell extends Component {
     // console.log('Cell - this.props is: ', this.props)
     return (
       <div className={(this.props.cellAlive === true) ? "green" : ""}>
-        {this.props.cellId}: {this.props.cellAlive === true ? "ALIVE!" : "dead..."}
-        <div>
+        {/* {this.props.cellId}: {this.props.cellAlive === true ? "ALIVE!" : "dead..."} */}
+        {this.props.cellAlive === true ? "A" : "D"}
+        {/* <div>
           cellX={this.props.cellX}
         </div>
         <div>
@@ -14,7 +15,7 @@ class Cell extends Component {
         </div>
         <div>
           cellGeneration={this.props.cellGeneration}
-        </div>
+        </div> */}
       </div>
     );
   }

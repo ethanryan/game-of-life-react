@@ -61,16 +61,18 @@ const HEIGHT = 600; */
   /* grid-template-columns: auto auto auto; */
   /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
   /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
-  grid-template-columns: repeat(5, minmax(20%, 1fr));
-  /* NOTE: this is a 5 by 5 responsive grid... */
+  /* grid-template-columns: repeat(5, minmax(20%, 1fr)); */
+  /* NOTE: above is a 5 by 5 responsive grid... */
+  grid-template-columns: repeat(20, minmax(5%, 1fr));
+  /* NOTE: above is a 20 by 50 responsive grid... */
   background-color: #2196F3;
-  padding: 20px;
+  padding: 12px;
 }
 
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
+  /* padding: 2px; */
   /* font-size: 30px; */
   text-align: center;
 }

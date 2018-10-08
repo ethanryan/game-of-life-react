@@ -5,7 +5,7 @@ import Rules from '../components/Rules'; //NOTE: delete this component later...
 import ControlPanel from '../components/ControlPanel';
 
 const numberOfRows = 5
-const numberOfColumns = 5
+const numberOfColumns = 20 //max columns at this styling...
 
 class GameContainer extends Component {
 

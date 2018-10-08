@@ -5,15 +5,11 @@ import Rules from '../components/Rules'; //can delete this component later...
 import ControlPanel from '../components/ControlPanel';
 
 import helloWorld from '../helpers/helloWorld';
-// import flattenArray from '../helpers/flattenArray';
 import makeArrayOfBooleanValues from '../helpers/makeArrayOfBooleanValues';
 import getInitialGrid from '../helpers/getInitialGrid';
-// import countLiveNeighbors from '../helpers/countLiveNeighbors';
 import updateCells from '../helpers/updateCells';
 import applyRulesOfLife from '../helpers/applyRulesOfLife';
 
-// const numberOfRows = 5
-// const numberOfColumns = 20 //max columns at this styling...
 
 class GameContainer extends Component {
 
@@ -26,80 +22,7 @@ class GameContainer extends Component {
       numberOfColumns: 20, //max columns at this styling...
     }
     this.addGeneration = this.addGeneration.bind(this)
-    // this.getInitialGrid = this.getInitialGrid.bind(this)
-    // this.flattenArray = this.flattenArray.bind(this)
-    // this.countLiveNeighbors = this.countLiveNeighbors.bind(this)
-    // this.makeArrayOfBooleanValues = this.makeArrayOfBooleanValues.bind(this)
   }
-
-  // // This does a two-dimensional loop over the square around the given
-  // // x,y position, counting all fields that have a cell but are not the
-  // // center field.
-  // //NOTE: via: https://codereview.stackexchange.com/questions/87330/emulating-conways-game-of-life-using-javascript?newreg=3c196755a2ad4a94ac580804f08d2483
-  // countLiveNeighbors(grid, x, y) {
-  //   var count = 0;
-  //   let width = this.state.numberOfRows
-  //   let height = numberOfColumns
-  //   for (var y1 = Math.max(0, y - 1); y1 <= Math.min(height, y + 1); y1++) {
-  //     for (var x1 = Math.max(0, x - 1); x1 <= Math.min(width, x + 1); x1++) {
-  //       if ((x1 !== x || y1 !== y) && grid[x1 + y1 * width])
-  //         count += 1;
-  //     }
-  //   }
-  //   // console.log('countLiveNeighbors, final count is: ', count)
-  //   return count;
-  // }
-
-  // makeMatrix = (x, y) => (
-  //   Array.from(
-  //     { length: x }, (thing, x) => Array.from(
-  //       { length: y }, (thing, y) => ({ x, y })
-  //     )
-  //   )
-  // );
-
-
-
-  // flattenArray(array) {
-  //   let flatArray = array.reduce((acc, val) => acc.concat(val), []);// [1, 2, 3, 4] //to flat single level array
-  //   return flatArray
-  // }
-
-  // makeArrayOfBooleanValues(array) {
-  //   let arrayOfBooleanValues = array.map(cell => cell.alive);
-  //   return arrayOfBooleanValues
-  // }
-
-  // getInitialGrid() { //move this function to a helper function...
-  //   console.warn('getInitialGrid called...')
-  //   let grid = [] //game grid is an array of cell objects
-  //   let matrix = this.makeMatrix(this.state.numberOfRows, numberOfColumns)
-  //   // console.log('matrix is: ', matrix)
-  //   let matrixFlat = flattenArray(matrix) //NOTE: flat throws error in test, because it is not yet used in all browsers, so using flattenArray function instead...
-  //   // console.log('matrixFlat is: ', matrixFlat)
-  //   let gridLength = matrixFlat.length
-  //   // console.log('gridLength is: ', gridLength)
-  //   for (var i=0; i < gridLength; i++) {
-  //     // console.log('matrixFlat[i] is: ', matrixFlat[i])
-  //     let cell = {
-  //       id: '',
-  //       alive: '',
-  //       x: '', //aka row
-  //       y: '', //aka column
-  //       liveNeighors: '', //make this a function...
-  //       generation: 0
-  //     } //this needs to be declared in the for loop...
-  //     let randomValue = (Math.random() > .5) ? true : false //this needs to be declared in the for loop...
-  //     cell.id = i
-  //     cell.alive = randomValue
-  //     cell.x = matrixFlat[i].x
-  //     cell.y = matrixFlat[i].y
-  //     // console.log('cell now is: ', cell)
-  //     grid.push(cell)
-  //   }
-  //   // console.log('getInitialGrid - grid is: ', grid)
-  //   return grid
-  // }
 
   addGeneration() {
     console.log('addGeneration called...')
@@ -108,35 +31,6 @@ class GameContainer extends Component {
     this.setState({generation: nextGeneration})
     this.makeNewArrayOfCells(nextGeneration)
   }
-
-  // updateCells(clone, arrayOfBooleanValues, nextGeneration) {
-  //   let numberOfRows = this.state.numberOfRows
-  //   let numberOfColumns = this.state.numberOfColumns
-  //   let newArray = clone.map(eachCell => {
-  //     let livingCellsCount = countLiveNeighbors(arrayOfBooleanValues, eachCell.x, eachCell.y, numberOfRows, numberOfColumns)
-  //     // console.log('in makeNewArrayOfCells, livingCellsCount is: ', livingCellsCount)
-  //     eachCell.liveNeighors = livingCellsCount
-  //     eachCell.generation = nextGeneration
-  //     return eachCell
-  //   })
-  //   return newArray
-  // }
-
-  // applyRulesOfLife(newArray) {
-  //   let newArrayOfCells = newArray.map(eachCell => {
-  //     if (eachCell.alive === false && eachCell.liveNeighors === 3) {
-  //       eachCell.alive = true
-  //       return eachCell
-  //     }
-  //     if (eachCell.alive === true && (eachCell.liveNeighors < 2 || eachCell.liveNeighors > 3)) {
-  //       eachCell.alive = false
-  //       return eachCell
-  //     } else {
-  //       return eachCell
-  //     }
-  //   })
-  //   return newArrayOfCells
-  // }
 
   makeNewArrayOfCells(nextGeneration) {
     console.log('makeNewArrayOfCells called...')

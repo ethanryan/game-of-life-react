@@ -4,7 +4,6 @@ import GameGrid from '../components/GameGrid';
 import Rules from '../components/Rules'; //can delete this component later...
 import ControlPanel from '../components/ControlPanel';
 
-import helloWorld from '../helpers/helloWorld';
 import makeArrayOfBooleanValues from '../helpers/makeArrayOfBooleanValues';
 import getInitialGrid from '../helpers/getInitialGrid';
 import updateCells from '../helpers/updateCells';
@@ -41,10 +40,8 @@ class GameContainer extends Component {
     let arrayOfBooleanValues = makeArrayOfBooleanValues(clone)
     //1) map over grid, call livingCellsCount on each cell, and return newArray of cell objects, replacing liveNeighors value (with a number) and generation values for each object...
     let newArray = updateCells(clone, arrayOfBooleanValues, nextGeneration, this.state.numberOfRows, this.state.numberOfColumns)
-    // console.log('0. newArray is: ', newArray)
     //2) apply rules of game to each cell object's liveNeighors number in newArray, updating each cell's alive value with new boolean value...
     let newArrayOfCells = applyRulesOfLife(newArray)
-    // console.log('1. newArrayOfCells is: ', newArrayOfCells)
     //3) with newArray, update state of grid...
     this.setState({grid: newArrayOfCells})
   }
@@ -55,7 +52,6 @@ class GameContainer extends Component {
     let grid = getInitialGrid(this.state.numberOfRows, this.state.numberOfColumns)
     this.setState({grid: grid})
   }
-
 
   render() {
     // console.log('GameContainer, this.state is: ', this.state)

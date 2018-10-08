@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Rules extends Component {
   render() {
     return (
-      <div className="rules">
+      <div className="rules box-shadow">
 
         <h1>
           Game of Life Rules:

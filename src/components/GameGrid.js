@@ -7,13 +7,6 @@ class GameGrid extends Component {
 
   render() {
     return (
-      // <div className="GameGrid center-block">
-      //   Game Grid here!!!
-      // </div>
-
-      <div>
-        game grid...
-
         <div className="grid-container">
           {this.props.grid.map(eachCell => {
             // console.log('eachCell is: ', eachCell)
@@ -31,8 +24,6 @@ class GameGrid extends Component {
             )
           })}
         </div>
-
-      </div>
     );
   }
 }

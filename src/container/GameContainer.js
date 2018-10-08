@@ -57,13 +57,9 @@ class GameContainer extends Component {
     return (
       <div className="GameContainer center-block">
 
-        <div>
-          GameContainer here, rendering GameGrid...
-        </div>
-
-        <div className="center-text">
-          yo what's up, center me...
-        </div>
+        <h1 className="center-text">
+          Game of Life
+        </h1>
 
         <GameGrid
           grid={this.state.grid}

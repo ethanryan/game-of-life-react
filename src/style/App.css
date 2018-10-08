@@ -1,14 +1,12 @@
 .App {
-  /* text-align: center; */
-  background-color: gray;
+  background-color: #2196F3;
 }
 
 .GameContainer {
-  background-color: pink;
-  /* background-color: #000; */
-  border: 3px solid red;
+  margin-top: 10px;
+  padding-top: 10px;
+  background-color: #2196F3;
   width: 80%;
-  /* position: relative; */
 }
 
 .center-text {
@@ -18,11 +16,6 @@
 .center-block {
   margin: 0 auto;
 }
-
-/* .big-button {
-  background-color: blue;
-  padding: 20px;
-} */
 
 .box-shadow {
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
@@ -37,7 +30,7 @@
   font-size: 1.42857143rem;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   font-weight: 400;
-  margin: 0 .25em 0 0;
+  margin-top: 20px;
   padding: .78571429em 1.5em .78571429em;
   transition-duration: 0.4s;
   width: 80%;
@@ -53,31 +46,24 @@
 }
 
 .ControlPanel {
-  /* background-color: lightgreen; */
   background-color: azure;
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
-  /* border: 3px solid green; */
   width: 60%;
 }
 
 .rules {
-  border: 3px solid blue;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 5px 20px 5px 20px;
   background-color: lightgray;
 }
-
-
-
-
-
 
 /* NOTE: using CSS Grid to make grid... */
 .grid-container {
   display: grid;
-  /* grid-template-columns: auto auto auto; */
-  /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
-  /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
   /* grid-template-columns: repeat(5, minmax(20%, 1fr)); */
   /* NOTE: above is a 5 by 5 responsive grid... */
   grid-template-columns: repeat(20, minmax(5%, 1fr));
@@ -89,11 +75,8 @@
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
-  /* padding: 2px; */
-  /* font-size: 30px; */
   text-align: center;
 }
-/* NOTE: using CSS Grid to make grid... */
 
 .green {
   background-color: green;

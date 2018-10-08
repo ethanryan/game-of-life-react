@@ -69,8 +69,8 @@ class GameContainer extends Component {
           grid={this.state.grid}
         />
 
-        <div className="center-block center-text big-button">
-          <button onClick={this.addGeneration}>
+        <div className="center-text">
+          <button onClick={this.addGeneration} className="big-button">
             Next Generation
           </button>
         </div>

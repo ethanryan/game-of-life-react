@@ -180,7 +180,7 @@ class GameContainer extends Component {
     console.log('1. newArray is: ', newArray)
     console.warn('originalGrid down here is ------>>>> ', originalGrid)
     console.log('1. xyz is: ', xyz)
-
+    this.setState({grid: xyz})
     //3) with newArray, update state of grid...
   }
 

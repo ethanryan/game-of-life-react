@@ -28,9 +28,9 @@ class GameContainer extends Component {
   // center field.
   //NOTE: via: https://codereview.stackexchange.com/questions/87330/emulating-conways-game-of-life-using-javascript?newreg=3c196755a2ad4a94ac580804f08d2483
   countLiveNeighbors(grid, x, y) {
-    console.log('countLiveNeighbors, grid is: ', grid) //make this grid an array of true / false values...
-    console.log('countLiveNeighbors, x is: ', x)
-    console.log('countLiveNeighbors, y is: ', y)
+    // console.log('countLiveNeighbors, grid is: ', grid) //make this grid an array of true / false values...
+    // console.log('countLiveNeighbors, x is: ', x)
+    // console.log('countLiveNeighbors, y is: ', y)
     var count = 0;
     let width = numberOfRows
     let height = numberOfColumns
@@ -40,7 +40,7 @@ class GameContainer extends Component {
           count += 1;
       }
     }
-    console.log('countLiveNeighbors, final count is: ', count)
+    // console.log('countLiveNeighbors, final count is: ', count)
     return count;
   }
 
@@ -68,15 +68,12 @@ class GameContainer extends Component {
 
     let matrix = this.makeMatrix(numberOfRows, numberOfColumns)
 
-    console.log('matrix is: ', matrix)
-    // let matrixFlat = matrix.flat() //NOTE: flat throws error in test, because it is not yet used in all browsers, so using function below instead...
-    let matrixFlat = this.flattenArray(matrix)
+    // console.log('matrix is: ', matrix)
+    let matrixFlat = this.flattenArray(matrix) //NOTE: flat throws error in test, because it is not yet used in all browsers, so using flattenArray function instead...
+    // console.log('matrixFlat is: ', matrixFlat)
 
-    console.log('matrixFlat is: ', matrixFlat)
-
-    // let gridLength = numberOfRows * numberOfColumns
     let gridLength = matrixFlat.length
-    console.log('gridLength is: ', gridLength)
+    // console.log('gridLength is: ', gridLength)
 
     for (var i=0; i < gridLength; i++) {
       // console.log('matrixFlat[i] is: ', matrixFlat[i])
@@ -96,7 +93,7 @@ class GameContainer extends Component {
       // console.log('cell now is: ', cell)
       grid.push(cell)
     }
-    console.log('getInitialGrid - grid is: ', grid)
+    // console.log('getInitialGrid - grid is: ', grid)
     return grid
   }
 
@@ -111,7 +108,7 @@ class GameContainer extends Component {
   updateCells(clone, arrayOfBooleanValues, nextGeneration) {
     let newArray = clone.map(eachCell => {
       let livingCellsCount = this.countLiveNeighbors(arrayOfBooleanValues, eachCell.x, eachCell.y)
-      console.log('in makeNewArrayOfCells, livingCellsCount is: ', livingCellsCount)
+      // console.log('in makeNewArrayOfCells, livingCellsCount is: ', livingCellsCount)
       eachCell.liveNeighors = livingCellsCount
       eachCell.generation = nextGeneration
       return eachCell
@@ -144,10 +141,10 @@ class GameContainer extends Component {
     let arrayOfBooleanValues = this.makeArrayOfBooleanValues(clone)
     //1) map over grid, call livingCellsCount on each cell, and return newArray of cell objects, replacing liveNeighors value (with a number) and generation values for each object...
     let newArray = this.updateCells(clone, arrayOfBooleanValues, nextGeneration)
-    console.log('0. newArray is: ', newArray)
+    // console.log('0. newArray is: ', newArray)
     //2) apply rules of game to each cell object's liveNeighors number in newArray, updating each cell's alive value with new boolean value...
     let newArrayOfCells = this.applyRulesOfLife(newArray)
-    console.log('1. newArrayOfCells is: ', newArrayOfCells)
+    // console.log('1. newArrayOfCells is: ', newArrayOfCells)
     //3) with newArray, update state of grid...
     this.setState({grid: newArrayOfCells})
   }
@@ -159,7 +156,7 @@ class GameContainer extends Component {
   }
 
   render() {
-    console.log('GameContainer, this.state is: ', this.state)
+    // console.log('GameContainer, this.state is: ', this.state)
     return (
       <div className="GameContainer center-block">
 

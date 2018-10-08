@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import GameGrid from '../components/GameGrid';
-import Rules from '../components/Rules'; //NOTE: delete this component later...
+import Rules from '../components/Rules'; //can delete this component later...
 import ControlPanel from '../components/ControlPanel';
 
 const numberOfRows = 5
@@ -12,7 +12,6 @@ class GameContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      message: "hello world",
       generation: 0,
       grid: [], //initial state of grid is an empty array... //NOTE: need to update nested generation in each cell within grid???
     }
@@ -28,15 +27,12 @@ class GameContainer extends Component {
   // center field.
   //NOTE: via: https://codereview.stackexchange.com/questions/87330/emulating-conways-game-of-life-using-javascript?newreg=3c196755a2ad4a94ac580804f08d2483
   countLiveNeighbors(grid, x, y) {
-    // console.log('countLiveNeighbors, grid is: ', grid) //make this grid an array of true / false values...
-    // console.log('countLiveNeighbors, x is: ', x)
-    // console.log('countLiveNeighbors, y is: ', y)
     var count = 0;
     let width = numberOfRows
     let height = numberOfColumns
     for (var y1 = Math.max(0, y - 1); y1 <= Math.min(height, y + 1); y1++) {
       for (var x1 = Math.max(0, x - 1); x1 <= Math.min(width, x + 1); x1++) {
-        if ((x1 != x || y1 != y) && grid[x1 + y1 * width])
+        if ((x1 !== x || y1 !== y) && grid[x1 + y1 * width])
           count += 1;
       }
     }
@@ -65,16 +61,12 @@ class GameContainer extends Component {
   getInitialGrid() { //move this function to a helper function...
     console.warn('getInitialGrid called...')
     let grid = [] //game grid is an array of cell objects
-
     let matrix = this.makeMatrix(numberOfRows, numberOfColumns)
-
     // console.log('matrix is: ', matrix)
     let matrixFlat = this.flattenArray(matrix) //NOTE: flat throws error in test, because it is not yet used in all browsers, so using flattenArray function instead...
     // console.log('matrixFlat is: ', matrixFlat)
-
     let gridLength = matrixFlat.length
     // console.log('gridLength is: ', gridLength)
-
     for (var i=0; i < gridLength; i++) {
       // console.log('matrixFlat[i] is: ', matrixFlat[i])
       let cell = {

@@ -4,9 +4,9 @@ class Cell extends Component {
   render() {
     // console.log('Cell - this.props is: ', this.props)
     return (
-      <div className={(this.props.cellAlive === true) ? "green" : ""}>
+      <div className={(this.props.cellAlive === true) ? "green" : "black"}>
         {/* {this.props.cellId}: {this.props.cellAlive === true ? "ALIVE!" : "dead..."} */}
-        {this.props.cellAlive === true ? "A" : "D"}
+        {this.props.cellAlive === true ? "😀" : "☠️"}
         {/* <div>
           cellX={this.props.cellX}
         </div>

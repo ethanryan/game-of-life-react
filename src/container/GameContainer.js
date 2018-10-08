@@ -4,6 +4,8 @@ import GameGrid from '../components/GameGrid';
 import Rules from '../components/Rules'; //can delete this component later...
 import ControlPanel from '../components/ControlPanel';
 
+import helloWorld from '../helpers/helloWorld';
+
 const numberOfRows = 5
 const numberOfColumns = 20 //max columns at this styling...
 
@@ -47,6 +49,8 @@ class GameContainer extends Component {
       )
     )
   );
+
+
 
   flattenArray(array) {
     let flatArray = array.reduce((acc, val) => acc.concat(val), []);// [1, 2, 3, 4] //to flat single level array
@@ -143,9 +147,11 @@ class GameContainer extends Component {
 
   componentDidMount() {
     console.warn('GameContainer --> componentDidMount!')
+    helloWorld()
     let grid = this.getInitialGrid()
     this.setState({grid: grid})
   }
+
 
   render() {
     // console.log('GameContainer, this.state is: ', this.state)

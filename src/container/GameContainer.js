@@ -109,17 +109,7 @@ class GameContainer extends Component {
     this.makeNewArrayOfCells(nextGeneration)
   }
 
-  makeNewArrayOfCells(nextGeneration) {
-    console.log('makeNewArrayOfCells called...')
-    let originalGrid = this.state.grid
-    console.warn('this.state.grid === originalGrid: ', this.state.grid === originalGrid)
-    // let clone = originalGrid.slice(0)  //NOTE: this is still allowing the objects within state to be mutated!
-    // let clone = this.state.grid.map(eachCell => Object.assign({}, eachCell)) //preventing state from getting mutated
-    let clone = this.state.grid.map(eachCell => ({...eachCell}) ) //preventing state from getting mutated
-    // console.log('clone is: ', clone)
-    let arrayOfBooleanValues = this.makeArrayOfBooleanValues(clone)
-
-    //1) map over grid, call livingCellsCount on each cell, and return newArray of cell objects, replacing liveNeighors value (with a number) and generation values for each object...
+  updateCells(clone, arrayOfBooleanValues, nextGeneration) {
     let newArray = clone.map(eachCell => {
       let livingCellsCount = this.countLiveNeighbors(arrayOfBooleanValues, eachCell.x, eachCell.y)
       console.log('in makeNewArrayOfCells, livingCellsCount is: ', livingCellsCount)
@@ -127,9 +117,10 @@ class GameContainer extends Component {
       eachCell.generation = nextGeneration
       return eachCell
     })
-    console.log('0. newArray is: ', newArray)
+    return newArray
+  }
 
-    //2) apply rules of game to each cell object's liveNeighors number in newArray, updating each cell's alive value with new boolean value...
+  applyRulesOfLife(newArray) {
     let newArrayOfCells = newArray.map(eachCell => {
       if (eachCell.alive === false && eachCell.liveNeighors === 3) {
         eachCell.alive = true
@@ -142,7 +133,21 @@ class GameContainer extends Component {
         return eachCell
       }
     })
-    console.log('1. newArray is: ', newArray)
+    return newArrayOfCells
+  }
+
+  makeNewArrayOfCells(nextGeneration) {
+    console.log('makeNewArrayOfCells called...')
+    // let clone = this.state.grid.slice(0)  //NOTE: this is still allowing the objects within state to be mutated!
+    // let clone = this.state.grid.map(eachCell => Object.assign({}, eachCell)) //preventing state from getting mutated
+    let clone = this.state.grid.map(eachCell => ({...eachCell}) ) //preventing state from getting mutated
+    // console.log('clone is: ', clone)
+    let arrayOfBooleanValues = this.makeArrayOfBooleanValues(clone)
+    //1) map over grid, call livingCellsCount on each cell, and return newArray of cell objects, replacing liveNeighors value (with a number) and generation values for each object...
+    let newArray = this.updateCells(clone, arrayOfBooleanValues, nextGeneration)
+    console.log('0. newArray is: ', newArray)
+    //2) apply rules of game to each cell object's liveNeighors number in newArray, updating each cell's alive value with new boolean value...
+    let newArrayOfCells = this.applyRulesOfLife(newArray)
     console.log('1. newArrayOfCells is: ', newArrayOfCells)
     //3) with newArray, update state of grid...
     this.setState({grid: newArrayOfCells})

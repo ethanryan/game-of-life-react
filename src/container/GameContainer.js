@@ -19,32 +19,19 @@ class GameContainer extends Component {
     this.flattenArray = this.flattenArray.bind(this)
     this.countLiveNeighbors = this.countLiveNeighbors.bind(this)
     this.makeArrayOfBooleanValues = this.makeArrayOfBooleanValues.bind(this)
-    this.cloneArray = this.cloneArray.bind(this)
   }
 
   // This does a two-dimensional loop over the square around the given
   // x,y position, counting all fields that have a cell but are not the
   // center field.
   //NOTE: via: https://codereview.stackexchange.com/questions/87330/emulating-conways-game-of-life-using-javascript?newreg=3c196755a2ad4a94ac580804f08d2483
-  // function countNeighbors(grid, x, y) {
-  //   var count = 0;
-  //   for (var y1 = Math.max(0, y - 1); y1 <= Math.min(height, y + 1); y1++) {
-  //     for (var x1 = Math.max(0, x - 1); x1 <= Math.min(width, x + 1); x1++) {
-  //       if ((x1 != x || y1 != y) && grid[x1 + y1 * width])
-  //         count +=1 ;
-  //     }
-  //   }
-  //   return count;
-  // }
   countLiveNeighbors(grid, x, y) {
     console.log('countLiveNeighbors, grid is: ', grid) //make this grid an array of true / false values...
     console.log('countLiveNeighbors, x is: ', x)
     console.log('countLiveNeighbors, y is: ', y)
     var count = 0;
-    // const numberOfRows = 5
-    // const numberOfColumns = 5
-    let width = 5
-    let height = 5
+    let width = 5 //this is numberOfRows...
+    let height = 5 //this is numberOfColumns...
     for (var y1 = Math.max(0, y - 1); y1 <= Math.min(height, y + 1); y1++) {
       for (var x1 = Math.max(0, x - 1); x1 <= Math.min(width, x + 1); x1++) {
         if ((x1 != x || y1 != y) && grid[x1 + y1 * width])
@@ -62,7 +49,6 @@ class GameContainer extends Component {
       )
     )
   );
-  // console.log(makeMatrix(2, 2));
 
   flattenArray(array) {
     let flatArray = array.reduce((acc, val) => acc.concat(val), []);// [1, 2, 3, 4] //to flat single level array
@@ -111,14 +97,8 @@ class GameContainer extends Component {
       // console.log('cell now is: ', cell)
       grid.push(cell)
     }
-
     console.log('getInitialGrid - grid is: ', grid)
     return grid
-  }
-
-  cloneArray(array) {
-    let clone = array.slice(0)
-    return clone
   }
 
   addGeneration() {
@@ -126,29 +106,19 @@ class GameContainer extends Component {
     let currentGeneration = this.state.generation
     let nextGeneration = currentGeneration + 1
     this.setState({generation: nextGeneration})
-    this.makeNewArrayOfCells(nextGeneration) //this function is mutation state of grid.....
-    //call makeNewArrayOfCells here..., with nextGeneration as argument (since it may not yet be updated in state...)
+    this.makeNewArrayOfCells(nextGeneration)
   }
 
   makeNewArrayOfCells(nextGeneration) {
     console.log('makeNewArrayOfCells called...')
     let originalGrid = this.state.grid
     console.warn('this.state.grid === originalGrid: ', this.state.grid === originalGrid)
-    // let clone = originalGrid.slice(0) //NOTE: making sure this is a clone.... //NOTE: this is still allowing the objects within state to be mutated!
-    // let clone = [...this.state.grid]
-    // let stateEnemies = state.enemies.map(enemy => Object.assign({}, enemy));
-    // let clone = this.state.grid.map(eachCell => Object.assign({}, eachCell)) //preventing state from getting mutated!!!
-    let clone = this.state.grid.map(eachCell => ({...eachCell}) ) //preventing state from getting mutated!!!
-    // const newArray = myArray.map(a => ({...a}));
-
-
-    console.error('clone is: ', clone)
-    console.warn('clone === originalGrid: ', clone === originalGrid)
-    // let clone = this.cloneArray(originalGrid) //cloning grid, so i don't mutate it...
+    // let clone = originalGrid.slice(0)  //NOTE: this is still allowing the objects within state to be mutated!
+    // let clone = this.state.grid.map(eachCell => Object.assign({}, eachCell)) //preventing state from getting mutated
+    let clone = this.state.grid.map(eachCell => ({...eachCell}) ) //preventing state from getting mutated
+    // console.log('clone is: ', clone)
     let arrayOfBooleanValues = this.makeArrayOfBooleanValues(clone)
-    console.warn('clone === arrayOfBooleanValues: ', clone === arrayOfBooleanValues)
 
-    //NOTE: commmenting this out for now, need to stop mutating state!
     //1) map over grid, call livingCellsCount on each cell, and return newArray of cell objects, replacing liveNeighors value (with a number) and generation values for each object...
     let newArray = clone.map(eachCell => {
       let livingCellsCount = this.countLiveNeighbors(arrayOfBooleanValues, eachCell.x, eachCell.y)
@@ -158,13 +128,9 @@ class GameContainer extends Component {
       return eachCell
     })
     console.log('0. newArray is: ', newArray)
-    console.warn('clone === newArray: ', clone === newArray)
-
 
     //2) apply rules of game to each cell object's liveNeighors number in newArray, updating each cell's alive value with new boolean value...
-
-//NOTE: commmenting this out for now, need to stop mutating state!
-    let xyz = newArray.map(eachCell => {
+    let newArrayOfCells = newArray.map(eachCell => {
       if (eachCell.alive === false && eachCell.liveNeighors === 3) {
         eachCell.alive = true
         return eachCell
@@ -176,17 +142,14 @@ class GameContainer extends Component {
         return eachCell
       }
     })
-
     console.log('1. newArray is: ', newArray)
-    console.warn('originalGrid down here is ------>>>> ', originalGrid)
-    console.log('1. xyz is: ', xyz)
-
-    this.setState({grid: xyz}) //NOTE: testing...
+    console.log('1. newArrayOfCells is: ', newArrayOfCells)
     //3) with newArray, update state of grid...
+    this.setState({grid: newArrayOfCells})
   }
 
   componentDidMount() {
-    console.warn('GameContainer ------------>>>>>> componentDidMount!!!!!!')
+    console.warn('GameContainer --> componentDidMount!')
     let grid = this.getInitialGrid()
     this.setState({grid: grid})
   }

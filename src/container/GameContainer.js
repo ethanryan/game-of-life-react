@@ -163,12 +163,11 @@ class GameContainer extends Component {
     return (
       <div className="GameContainer center-block">
 
-        <div>GameContainer here, rendering GameGrid...</div>
+        <div>
+          GameContainer here, rendering GameGrid...
+        </div>
 
-        <Rules
-        />
-
-        <div className="center-block">
+        <div className="center-text">
           yo what's up, center me...
         </div>
 
@@ -182,6 +181,9 @@ class GameContainer extends Component {
 
         <ControlPanel
           generation={this.state.generation}
+        />
+
+        <Rules
         />
 
       </div>

@@ -11,10 +11,6 @@
   /* position: relative; */
 }
 
-/* const CELL_SIZE = 20;
-const WIDTH = 800;
-const HEIGHT = 600; */
-
 .center-text {
   text-align: center;
 }
@@ -22,18 +18,6 @@ const HEIGHT = 600; */
 .center-block {
   margin: 0 auto;
 }
-
-/* .GameGrid { */
-  /* background-color: darkgray; */
-  /* height: 100px; */
-  /* width: 100px; */
-  /* //NOTE: 100px by 100px with cells that are 20px by 20px will result in a row of 5 rows by t columns... */
-  /* border: 1px solid blue; */
-  /* background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); */
-  /* NOTE: background-image creates grid... */
-  /* background-size: 20px 20px; */
-  /* NOTE: background-size is size of height and width of each cell... */
-/* } */
 
 .Cell-Live {
   background-color: green;

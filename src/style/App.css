@@ -19,6 +19,11 @@
   margin: 0 auto;
 }
 
+.big-button {
+  background-color: blue;
+  padding: 20px;
+}
+
 .Cell-Live {
   background-color: green;
 }

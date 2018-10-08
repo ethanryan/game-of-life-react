@@ -4,12 +4,8 @@ class ControlPanel extends Component {
   render() {
     return (
       <div className="ControlPanel center-block">
-        ControlPanel here!!!
-        <p>
-          Generation is: {this.props.generation}
-        </p>
-        <p>
-          will add buttons and stuff later.
+        <p className="center-text">
+          Generation: {this.props.generation}
         </p>
       </div>
     );

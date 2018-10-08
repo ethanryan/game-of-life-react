@@ -48,7 +48,6 @@ class GameContainer extends Component {
 
   componentDidMount() {
     console.warn('GameContainer --> componentDidMount!')
-    helloWorld()
     let grid = getInitialGrid(this.state.numberOfRows, this.state.numberOfColumns)
     this.setState({grid: grid})
   }
@@ -67,12 +66,14 @@ class GameContainer extends Component {
         </div>
 
         <GameGrid
-          grid={this.state.grid} //passing grid from state...
+          grid={this.state.grid}
         />
 
-        <button className="center-text" onClick={this.addGeneration}>
-          Next Generation
-        </button>
+        <div className="center-block center-text big-button">
+          <button onClick={this.addGeneration}>
+            Next Generation
+          </button>
+        </div>
 
         <ControlPanel
           generation={this.state.generation}

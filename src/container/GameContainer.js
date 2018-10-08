@@ -137,11 +137,11 @@ class GameContainer extends Component {
     // let clone = originalGrid.slice(0) //NOTE: making sure this is a clone.... //NOTE: this is still allowing the objects within state to be mutated!
     // let clone = [...this.state.grid]
     // let stateEnemies = state.enemies.map(enemy => Object.assign({}, enemy));
-    let clone = this.state.grid.map(eachCell => Object.assign({}, eachCell)) //preventing state from getting mutated!!!
+    // let clone = this.state.grid.map(eachCell => Object.assign({}, eachCell)) //preventing state from getting mutated!!!
+    let clone = this.state.grid.map(eachCell => ({...eachCell}) ) //preventing state from getting mutated!!!
+    // const newArray = myArray.map(a => ({...a}));
 
-    // let newStateEnemies = [
-    //   ...state.enemies
-    // ];
+
     console.error('clone is: ', clone)
     console.warn('clone === originalGrid: ', clone === originalGrid)
     // let clone = this.cloneArray(originalGrid) //cloning grid, so i don't mutate it...
@@ -180,7 +180,8 @@ class GameContainer extends Component {
     console.log('1. newArray is: ', newArray)
     console.warn('originalGrid down here is ------>>>> ', originalGrid)
     console.log('1. xyz is: ', xyz)
-    this.setState({grid: xyz})
+
+    this.setState({grid: xyz}) //NOTE: testing...
     //3) with newArray, update state of grid...
   }
 

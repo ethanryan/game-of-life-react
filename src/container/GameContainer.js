@@ -4,6 +4,8 @@ import GameGrid from '../components/GameGrid';
 import Rules from '../components/Rules'; //NOTE: delete this component later...
 import ControlPanel from '../components/ControlPanel';
 
+const numberOfRows = 5
+const numberOfColumns = 5
 
 class GameContainer extends Component {
 
@@ -30,8 +32,8 @@ class GameContainer extends Component {
     console.log('countLiveNeighbors, x is: ', x)
     console.log('countLiveNeighbors, y is: ', y)
     var count = 0;
-    let width = 5 //this is numberOfRows...
-    let height = 5 //this is numberOfColumns...
+    let width = numberOfRows
+    let height = numberOfColumns
     for (var y1 = Math.max(0, y - 1); y1 <= Math.min(height, y + 1); y1++) {
       for (var x1 = Math.max(0, x - 1); x1 <= Math.min(width, x + 1); x1++) {
         if ((x1 != x || y1 != y) && grid[x1 + y1 * width])
@@ -63,9 +65,6 @@ class GameContainer extends Component {
   getInitialGrid() { //move this function to a helper function...
     console.warn('getInitialGrid called...')
     let grid = [] //game grid is an array of cell objects
-
-    const numberOfRows = 5
-    const numberOfColumns = 5
 
     let matrix = this.makeMatrix(numberOfRows, numberOfColumns)
 

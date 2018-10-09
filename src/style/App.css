@@ -1,0 +1,87 @@
+.App {
+  background-color: #2196F3;
+}
+
+.GameContainer {
+  margin-top: 10px;
+  padding-top: 10px;
+  background-color: #2196F3;
+  width: 80%;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-block {
+  margin: 0 auto;
+}
+
+.box-shadow {
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.big-button {
+  background-color: white!important;
+  border: 2px solid blue!important;
+  border-radius: .28571429rem;
+  color: blue!important;
+  cursor: pointer;
+  font-size: 1.42857143rem;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 400;
+  margin-top: 20px;
+  padding: .78571429em 1.5em .78571429em;
+  transition-duration: 0.4s;
+  width: 80%;
+}
+
+.big-button:hover {
+  background-color: blue!important;
+  color: white!important;
+}
+
+.Cell-Live {
+  background-color: green;
+}
+
+.ControlPanel {
+  background-color: azure;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 60%;
+}
+
+.rules {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 5px 20px 5px 20px;
+  background-color: lightgray;
+}
+
+/* NOTE: using CSS Grid to make grid... */
+.grid-container {
+  display: grid;
+  /* grid-template-columns: repeat(5, minmax(20%, 1fr)); */
+  /* NOTE: above is a 5 by 5 responsive grid... */
+  grid-template-columns: repeat(20, minmax(5%, 1fr));
+  /* NOTE: above is a 20 by 50 responsive grid... */
+  background-color: #2196F3;
+  padding: 12px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+.green {
+  background-color: green;
+}
+
+.black {
+  background-color: black;
+}
